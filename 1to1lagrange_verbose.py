@@ -27,13 +27,6 @@ def c1(X):
 def c2(X):
     return (L0-(objective(X)+X[1]))
 
-
-def constraints(X):
-    pf,lf=X
-    # p = pf + pl
-    # l = lf + pl
-    return (P0-(objective(X)+pf))+(L0-(objective(X)+lf))
-
 def F(X):
     'Augmented Lagrange function'
     pf,lf,lam1,lam2 = X    
@@ -44,13 +37,11 @@ def F(X):
 dfdL = grad(F, 0)
 
 # Find L that returns all zeros in this function.
-
-
 def minimiser_objective(L):
-    pf, lf, _lambda = L
-    dFdpf, dFdlf, dFdlam = dfdL(L)
-    return [dFdpf, dFdlf, c1([pf,lf]),c2]
+    pf, lf, lam1, lam2 = L
+    dFdpf, dFdlf, dFdlam1, dFdlam2 = dfdL(L)
+    return [dFdpf, dFdlf, c1([pf,lf]),c2([pf,lf])]
 
-pf, lf, _l = fsolve(minimiser_objective, [P0, L0, 1.0,1,0])
+pf, lf, lam1, lam2 = fsolve(minimiser_objective, [P0, L0, 1.0,1.0])
 print(f'The answer is at {pf,lf, objective([pf,lf])}')
 
