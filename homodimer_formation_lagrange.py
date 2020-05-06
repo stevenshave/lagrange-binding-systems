@@ -17,5 +17,6 @@ def lagrange_homodimerformation(p0,kdpp):
     return {'pf':pf,'pp':((pf*pf)/kdpp)}
 
 if __name__ == "__main__":
-    concentrations=lagrange_homodimerformation(20,5)
+    concentrations=lagrange_homodimerformation(14.7,3.5)
     print(f"The answer is at {concentrations['pp']}")
+    print(concentrations)

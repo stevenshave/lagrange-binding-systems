@@ -21,5 +21,6 @@ def lagrange_competition(p0,l0, i0,kdpl, kdpi):
     return {'pf':pf,'lf':lf,'pl':(pf*lf)/kdpl}
 
 if __name__ == "__main__":
-    concentrations=lagrange_competition(10,10,100,1,20)
+    concentrations=lagrange_competition(10,12,13,7.5,3.2)
     print(f"The answer is at {concentrations['pl']}")
+    print(concentrations)

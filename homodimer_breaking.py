@@ -19,6 +19,6 @@ def lagrange_homodimerbreaking(p0,i0,kdpp, kdpi):
     return {'pf':pf,'if':i_f,'pp':((pf*pf)/kdpp), 'pi':(pf*i_f)/kdpi}
 
 if __name__ == "__main__":
-    concentrations=lagrange_homodimerbreaking(10,12,20,10)
+    concentrations=lagrange_homodimerbreaking(14.7,20,3.5,1.2)
     print(f"The answer is at {concentrations['pp']}")
     print(concentrations)
