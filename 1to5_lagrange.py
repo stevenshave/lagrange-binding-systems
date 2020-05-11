@@ -46,7 +46,7 @@ def lagrange_1_to_5(p0, l0,kd1, kd2, kd3, kd4, kd5):
 		constraint1=p0-(pf+pl1+pl2+pl3+pl4+pl5+pl12+pl13+pl14+pl15+pl23+pl24+pl25+pl34+pl35+pl45+pl123+pl124+pl125+pl134+pl135+pl145+pl234+pl235+pl245+pl345+pl1234+pl1235+pl1245+pl1345+pl2345+pl12345)
 		constraint2=l0-(lf+1*(pl1+pl2+pl3+pl4+pl5)+2*(pl12+pl13+pl14+pl15+pl23+pl24+pl25+pl34+pl35+pl45)+3*(pl123+pl124+pl125+pl134+pl135+pl145+pl234+pl235+pl245+pl345)+4*(pl1234+pl1235+pl1245+pl1345+pl2345)+5*(pl12345))
 		nonzero_constraint=(constraint1-abs(constraint1))-(constraint2-abs(constraint2))
-		return pl12345 - X[2]*constraint1 - X[3]*constraint2 - X[4]*nonzero_constraint
+		return pl12345 + X[2]*constraint1 + X[3]*constraint2 + X[4]*nonzero_constraint
 	dfdL = grad(F, 0) # Gradients of the Lagrange function
 	pf, lf, lam1, lam2,lam3= fsolve(dfdL, [p0, l0]+[1.0]*3, fprime=jacobian(dfdL))
 	pl1=pf*lf/kd1

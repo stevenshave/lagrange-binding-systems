@@ -15,7 +15,7 @@ def lagrange_1_to_2(p0, l0, kd1, kd2):
         pl12=(pl1*lf + pl2*lf)/(kd1+kd2)
         constraint1=p0-(pf+pl1+pl2+pl12)
         constraint2=l0-(lf+pl1+pl2+2*pl12)
-        return pl12 - X[2] *constraint1 - X[3]*constraint2
+        return pl12 + X[2] *constraint1 + X[3]*constraint2
     dfdL = grad(F, 0) # Gradients of the Lagrange function
 
     pf, lf, lam1, lam2= fsolve(dfdL, [p0, l0]+[1.0]*2, fprime=jacobian(dfdL))

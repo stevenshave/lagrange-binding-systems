@@ -10,7 +10,7 @@ from autograd import grad
 def lagrange_one_to_one(p0,l0,kd):
     def F(X): # Augmented Lagrange function
         response=(X[0]*X[1])/kd
-        return response - X[2] *(p0-(response+X[0])) - X[3]*(l0-(response+X[1]))
+        return response + X[2] *(p0-(response+X[0])) + X[3]*(l0-(response+X[1]))
     dfdL = grad(F) # Gradients of the Lagrange function
     pf, lf, lam1, lam2 = fsolve(dfdL, [p0, l0, 1.0,1.0])
     return {'pf':pf,'lf':lf,'pl':(pf*lf)/kd}

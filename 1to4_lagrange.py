@@ -30,7 +30,7 @@ def lagrange_1_to_4(p0, l0,kd1, kd2, kd3, kd4):
 		constraint1=p0-(pf+pl1+pl2+pl3+pl4+pl12+pl13+pl14+pl23+pl24+pl34+pl123+pl124+pl134+pl234+pl1234)
 		constraint2=l0-(lf+1*(pl1+pl2+pl3+pl4)+2*(pl12+pl13+pl14+pl23+pl24+pl34)+3*(pl123+pl124+pl134+pl234)+4*(pl1234))
 		nonzero_constraint=(constraint1-abs(constraint1))-(constraint2-abs(constraint2))
-		return pl1234 - X[2]*constraint1 - X[3]*constraint2 - X[4]*nonzero_constraint
+		return pl1234 + X[2]*constraint1 + X[3]*constraint2 + X[4]*nonzero_constraint
 	dfdL = grad(F, 0) # Gradients of the Lagrange function
 	pf, lf, lam1, lam2,lam3= fsolve(dfdL, [p0, l0]+[1.0]*3, fprime=jacobian(dfdL))
 	pl1=pf*lf/kd1

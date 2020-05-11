@@ -59,7 +59,7 @@ def write_1_to_n_lagrange(output_filename, n):
     constraint=constraint[:-1]+")\n"
     out.write(constraint)
     out.write("\t\tnonzero_constraint=(constraint1-abs(constraint1))-(constraint2-abs(constraint2))\n")
-    out.write(f"\t\treturn pl{''.join([str(x) for x in bmat[-1][0]])} - X[2]*constraint1 - X[3]*constraint2 - X[4]*nonzero_constraint\n")
+    out.write(f"\t\treturn pl{''.join([str(x) for x in bmat[-1][0]])} + X[2]*constraint1 + X[3]*constraint2 + X[4]*nonzero_constraint\n")
     out.write("\tdfdL = grad(F, 0) # Gradients of the Lagrange function\n")
     out.write("\tpf, lf, lam1, lam2,lam3= fsolve(dfdL, [p0, l0]+[1.0]*3, fprime=jacobian(dfdL))\n")
     for i in range(1,n+1):
@@ -76,4 +76,10 @@ def write_1_to_n_lagrange(output_filename, n):
     out.write("}")
 
 if __name__ == "__main__":
-    concentrations=write_1_to_n_lagrange("1to10_lagrange.py", 5)
+    write_1_to_n_lagrange("1to4_lagrange.py", 4)
+    write_1_to_n_lagrange("1to5_lagrange.py", 5)
+    write_1_to_n_lagrange("1to6_lagrange.py", 6)
+    write_1_to_n_lagrange("1to7_lagrange.py", 7)
+    write_1_to_n_lagrange("1to8_lagrange.py", 8)
+    write_1_to_n_lagrange("1to9_lagrange.py", 9)
+    write_1_to_n_lagrange("1to10_lagrange.py", 10)

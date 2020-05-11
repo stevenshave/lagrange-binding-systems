@@ -78,7 +78,7 @@ def lagrange_1_to_6(p0, l0,kd1, kd2, kd3, kd4, kd5, kd6):
 		constraint1=p0-(pf+pl1+pl2+pl3+pl4+pl5+pl6+pl12+pl13+pl14+pl15+pl16+pl23+pl24+pl25+pl26+pl34+pl35+pl36+pl45+pl46+pl56+pl123+pl124+pl125+pl126+pl134+pl135+pl136+pl145+pl146+pl156+pl234+pl235+pl236+pl245+pl246+pl256+pl345+pl346+pl356+pl456+pl1234+pl1235+pl1236+pl1245+pl1246+pl1256+pl1345+pl1346+pl1356+pl1456+pl2345+pl2346+pl2356+pl2456+pl3456+pl12345+pl12346+pl12356+pl12456+pl13456+pl23456+pl123456)
 		constraint2=l0-(lf+1*(pl1+pl2+pl3+pl4+pl5+pl6)+2*(pl12+pl13+pl14+pl15+pl16+pl23+pl24+pl25+pl26+pl34+pl35+pl36+pl45+pl46+pl56)+3*(pl123+pl124+pl125+pl126+pl134+pl135+pl136+pl145+pl146+pl156+pl234+pl235+pl236+pl245+pl246+pl256+pl345+pl346+pl356+pl456)+4*(pl1234+pl1235+pl1236+pl1245+pl1246+pl1256+pl1345+pl1346+pl1356+pl1456+pl2345+pl2346+pl2356+pl2456+pl3456)+5*(pl12345+pl12346+pl12356+pl12456+pl13456+pl23456)+6*(pl123456))
 		nonzero_constraint=(constraint1-abs(constraint1))-(constraint2-abs(constraint2))
-		return pl123456 - X[2]*constraint1 - X[3]*constraint2 - X[4]*nonzero_constraint
+		return pl123456 + X[2]*constraint1 + X[3]*constraint2 + X[4]*nonzero_constraint
 	dfdL = grad(F, 0) # Gradients of the Lagrange function
 	pf, lf, lam1, lam2,lam3= fsolve(dfdL, [p0, l0]+[1.0]*3, fprime=jacobian(dfdL))
 	pl1=pf*lf/kd1
